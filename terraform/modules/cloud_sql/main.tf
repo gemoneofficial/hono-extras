@@ -11,6 +11,13 @@ resource "google_sql_database_instance" "hono_sql" {
     disk_type                   = var.sql_instance_disk_type
     activation_policy           = var.sql_instance_activation_policy
     deletion_protection_enabled = var.sql_instance_deletion_protection_enabled
+    
+    database_flags [
+       {
+          name =  "cloudsql.iam_authentication"
+          value = "on"
+       }
+    ]
 
     dynamic "maintenance_window" {
       for_each = var.sql_instance_maintenance_window != null ? [1] : []
@@ -33,6 +40,7 @@ resource "google_sql_database_instance" "hono_sql" {
         retained_backups = var.sql_instance_backup_count
       }
     }
+
   }
   depends_on = [var.service_networking]
 }
