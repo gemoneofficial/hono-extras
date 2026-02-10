@@ -70,7 +70,7 @@ variable "sql_instance_name" {
 variable "sql_instance_version" {
   type        = string
   description = "Database Version"
-  default     = "POSTGRES_14"
+  default     = "POSTGRES_18"
 }
 
 variable "sql_instance_deletion_protection_enabled" {
